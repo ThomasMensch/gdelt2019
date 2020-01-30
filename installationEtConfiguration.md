@@ -20,29 +20,32 @@ Nous avons opté pour une installation de Zeppelin et de Cassandra en local pour
 
 CCM: https://academy.datastax.com/planet-cassandra/getting-started-with-ccm-cassandra-cluster-manager
 
-Nous avons essayé d'utiliser ccm pour le projet, mais cela ne convient pas pour un déploiement en cluster. Nous avons finalement managé notre cluster manuellement.
+CCM est plus approprié pour une installation en local, sans cluster déployé sur plusieurs machines.
 
-### Cassandra en local
+### Cassandra/Zeppelin en local
+
+Pour tester nos requêtes, nous avons installé Cassandra et Zeppelin en local, ce qui nous a permis de concevoir les requêtes demandées par l'énoncé du projet.
 
 - `sudo apt update`
 - `sudo apt install cassandra`
 
-## Etapes d'installation et de configuration sur EC2
+## Déploiement du cluster sur AWS - Etapes d'installation et de configuration sur EC2
 
 *Sources utiles:*
 
  - https://www.linode.com/docs/databases/cassandra/set-up-a-cassandra-node-cluster-on-ubuntu-and-centos/
  - https://www.vultr.com/docs/how-to-install-apache-cassandra-3-11-x-on-centos-7
 
-Nous avons installé Cassandra manuellement sur chaque noeud EC2 généré par EMR. Nous rappelons à ce stade, que EMR génère 1 noeud Master et plusieurs noeuds Slave. Les services lancés par EMR (Spark, Zeppelin, ...) sont tous lancés au niveau du noeud Master, ce qui impose de ne rien installer d'autre sur ce noeud, sous peine d'avoir des soucis de mémoire (la mémoire octroyée par le compte educate étant très limitée).
+Nous avons installé Cassandra manuellement sur chaque noeud EC2 généré par EMR. Nous rappelons à ce stade, que EMR génère 1 noeud Master et plusieurs noeuds Slave. Les services lancés par EMR (Spark, Zeppelin, ...) sont tous lancés au niveau du noeud Master, ce qui impose de ne rien installer d'autre sur ce noeud, sous peine d'avoir des soucis de mémoire (la mémoire octroyée par le compte educate étant très limitée). C'est ce qui nous a valu l'erreur "Broken pipe" au niveau de Zeppelin, car mémoire des machine EC2 pas assez puissante pour prendre en charge, et Cassandra et Zeppelin ainsi que Spark.
 
 ### Chargement des fichiers dans AWS S3
 
-Création d'un bucket S3 pour chargement des fichiers, qu'on va lire et charger ensuite dans les tables Cassandra.
+Création d'un bucket S3 pour chargement des fichiers (suivant le TP AWS).
+Chargement d'un an de données dans le bucket S3.
 
 ### Création d'un Cluster
 
-Le lancement du Cluster est fait à l'aide du module EMR d'AWS.
+Le lancement du Cluster est fait à l'aide du module EMR d'AWS, avec 3 instances. Dans ce cas, EMR lance automatiquement 1 Master et 2 Slaves.
 
 ### Installation Cassandra sur Centos-7 (Amazon EMR)
 
@@ -85,10 +88,14 @@ Avec les paramètres suivants:
 - sudo nodetool status
 - cqlsh
 
+8. Afin de permettre aux différents noeuds Cassandra de communiquer (sachant que chaque noeud Cassandra est sur une machine EC2 différente), il faut configurer des règles de sécurité, au niveau des règles entrantes de chaque instance EC2:
 
-### Installation d'Ansible
+- Type "Tous les TCP"
+- Saisir le bloc CIDR du subnet du cluster EMR, ou configurer les adresses IP privée, de chaque noeud EC2.
 
-On peut automatiser le processus d'installation de cassandra sur les noeuds à l'aide d'Ansible
+### Installation d'Ansible (amélioration de notre rendu)
+
+Notre rendu, peut être amélioré, en utilisant ansible, afin d'automatiser le lancement des cluster et ainsi d'économiser du crédit sur AWS.
 
 Setting Up Cassandra Cluster Through Ansible - Knoldus Blogs
 
