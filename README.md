@@ -2,7 +2,7 @@
 Projet GDELT
 
 ### Présentation du projet
-Le projet GDELT surveille les informations diffusées, imprimées et Web du monde entier dans presque tous les coins de chaque pays dans plus de 100 langues et identifie les personnes, les lieux, les organisations, les thèmes, les sources, les émotions, les comptes, les citations, les images et des événements qui animent notre sociétéà chaque seconde de chaque jour, créant une plate-forme ouverte gratuite pour l'informatique dans le monde entier.
+Le projet GDELT surveille les informations diffusées, imprimées et données Web du monde entier. Ceci porte sur presque tous les coins de chaque pays, dans plus de 100 langues en identifiant les personnes, les lieux, les organisations, les thèmes, les sources, les émotions, les comptes, les citations, les images et les événements qui animent notre société, créant ainsi une plate-forme ouverte gratuite pour l'informatique dans le monde entier.
 
 A partir d’une date (ou d’un mois), afficher sur une carte des pays dans lesquels des évènements ont eu lieu.
 Possibilité de visualiser pour chaque pays le nombre de mentions ainsi que le caractère + ou - de chacune d’elles.
@@ -38,7 +38,10 @@ Lors de la présentation et la démonstration, nous avons pu montrer la résilie
 Nous avions choisi d'utiliser EC2 couplé à EMR et d'installer Cassandra sur tous les noeuds (3 noeuds) pour pouvoir répliquer l'information autant que nécessaire. Nous avions choisi de faire interagir Zeppelin sur AWS avec Cassandra en installant des interpréteurs / connecteur spark cassandra.
 Nous avons rencontré le problème suivant majoritairement qui est celui que nos noeuds master finissaient par tomber au bout d'un certain temps et que les slaves persistaient mais qu'on perdait donc notre cluster en entier.
 
-A la suite de la présentation, nous avons pu poursuivre ce projet en essayant de résoudre et surtout comprendre l'origine des problèmes auxquels nous avions eu face pendant la démonstration. En voici ce que nous retenons maintenant: 
-#### Il ne faut en aucun cas installer Cassandra sur les noeuds Masters mais uniquement sur les Slaves.
+### Post-projet:
+A la suite de la présentation, nous avons poursuivit ce projet, en essayant de résoudre et surtout comprendre l'origine des problèmes auxquels nous avions fait face pendant la démonstration. En voici ce que nous retenons maintenant: 
+#### Le lancement d'EMR, avec 3 instances, avec un compte éducate, restreint notablement les ressources matérielles. Lorsque nous avions lancé le cluster, EMR génère un maître et plusieurs Slave. EMR lance Spark et Zeppelin sur le noeud maître, ce qui consomme notablement la mémoire java. Ce souci impose de ne pas installer Cassandra dans le noeud maître sous peine de:
+- Crash Zeppelin en plein requête Spark ou Cassandra => Broken pipe, puis Connection refused.
+- Crash serveur Cassandra au niveau du noeud, avec l'erreur "not enough java memory heap", la mémoire étant consommée principalement par Zeppelin et Spark lancés sur le noeud maître.
 
 
