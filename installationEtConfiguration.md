@@ -20,6 +20,8 @@ Nous avons opté pour une installation de Zeppelin et de Cassandra en local pour
 
 CCM: https://academy.datastax.com/planet-cassandra/getting-started-with-ccm-cassandra-cluster-manager
 
+Nous avons essayé d'utiliser ccm pour le projet, mais cela ne convient pas pour un déploiement en cluster. Nous avons finalement managé notre cluster manuellement.
+
 ### Cassandra en local
 
 - `sudo apt update`
@@ -32,9 +34,15 @@ CCM: https://academy.datastax.com/planet-cassandra/getting-started-with-ccm-cass
  - https://www.linode.com/docs/databases/cassandra/set-up-a-cassandra-node-cluster-on-ubuntu-and-centos/
  - https://www.vultr.com/docs/how-to-install-apache-cassandra-3-11-x-on-centos-7
 
+Nous avons installé Cassandra manuellement sur chaque noeud EC2 généré par EMR. Nous rappelons à ce stade, que EMR génère 1 noeud Master et plusieurs noeuds Slave. Les services lancés par EMR (Spark, Zeppelin, ...) sont tous lancés au niveau du noeud Master, ce qui impose de ne rien installer d'autre sur ce noeud, sous peine d'avoir des soucis de mémoire (la mémoire octroyée par le compte educate étant très limitée).
+
+### Chargement des fichiers dans AWS S3
+
+Création d'un bucket S3 pour chargement des fichiers, qu'on va lire et charger ensuite dans les tables Cassandra.
+
 ### Création d'un Cluster
 
-Configurer SSH everywhere avec les règles entrantes
+Le lancement du Cluster est fait à l'aide du module EMR d'AWS.
 
 ### Installation Cassandra sur Centos-7 (Amazon EMR)
 
