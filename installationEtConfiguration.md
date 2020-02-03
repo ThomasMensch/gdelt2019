@@ -122,11 +122,11 @@ Il est nécessaire d'installer FoxyProxy, et suivre la procédure décrite par A
 Cette étape n'est pas nécessaire si l'on travaille sur Zeppelin en local.
 
 Aller dans l'option interpreter à droite (petite roue dentée), ensuite sur spark en mode edit, et rajouter les connecteurs ou interpréteurs nécessaires:
-=> `"spark.jars.packages" avec la valeur suivante	"datastax:spark-cassandra-connector:2.4.0-s_2.11"`
+=> `"spark.jars.packages"` avec la valeur suivante	`"datastax:spark-cassandra-connector:2.4.0-s_2.11"`
 => `"spark.cassandra.connection.host"` avec la valeur suivante `"172.31.81.86, 172.31.83.94, 172.31.91.18"`, ie les adresses privées des noeuds EC2.
 
-Ne pas oublier de les rajouter sur le notebook, d'enregistrer, et d'écrire $nom_interpréteur dans la cellule ou l'interpréteur est appelé
 Il faut ajouter les imports suivants dans chaque notebook, afin de pouvoir lancer des requêtes vers le cluster Cassandra:
+
 ```
 import org.apache.spark.sql.cassandra._
 import com.datastax.spark.connector._
