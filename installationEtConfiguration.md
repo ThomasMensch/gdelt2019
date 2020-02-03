@@ -76,7 +76,7 @@ name=Apache Cassandra baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
 
 Avec les paramètres suivants:
 
-- seeds: "172.31.81.86, 172.31.83.94, 172.31.91.18, 172.31.87.57, 172.31.87.67"
+- seeds: "172.31.81.86, 172.31.83.94, 172.31.91.18" (étant les adresses IP privées des instances EC2)
 - listen_address: "172.31.81.86"
 - rpc_address: “172.31.81.86”
 (l'adresse 712.31.81.86 étant l'adresse privée du noeud EC2, et non l'adresse publique)
@@ -114,15 +114,16 @@ Setting Up Cassandra Cluster Through Ansible - Knoldus Blogs
 
 ### Démarrage de Zeppelin
 
-Ouvrir un tunnel SSH en copiant le lien trouvé sur SSH dans un terminal dans le même répertoire que la clé. Si tous les flux dans les groupes de sécurité ne sont pas ouverts, et que vous ne voulez pas autoriser tous les flux publics, il est nécessaire d'installer FoxyProxy. Après l'ajout de l'extension et import du fichier proxyproxy-settings.xml, vérifier que l'option "use proxies based on their predefined patterns and priorities" est cochée.
+Ouvrir un tunnel SSH en lançant la commande suivante dans un terminal `ssh -i gdeltKeyPair.pem -ND 8157 hadoop@ec2-34-205-166-40.compute-1.amazonaws.com`. 
+Il est nécessaire d'installer FoxyProxy, et suivre la procédure décrite par AWS, qui consiste à charger un fichier de configuration XML dans FoxyProxy. Après l'ajout de l'extension et import du fichier proxyproxy-settings.xml, vérifier que l'option "use proxies based on their predefined patterns and priorities" est cochée.
 
 ### Ajout du connecteur / interpréteur Cassandra dans Zeppelin
 
 Cette étape n'est pas nécessaire si l'on travaille sur Zeppelin en local.
 
 Aller dans l'option interpreter à droite (petite roue dentée), ensuite sur spark en mode edit, et rajouter les connecteurs ou interpréteurs nécessaires:
-=> "spark.jars.packages" avec la valeur suivante	"datastax:spark-cassandra-connector:2.4.0-s_2.11"
-=> "spark.cassandra.connection.host" avec la valeur suivante "172.31.81.86, 172.31.83.94, 172.31.91.18, 172.31.87.57, 172.31.87.67", ie les adresses privées des noeuds EC2.
+=> `"spark.jars.packages" avec la valeur suivante	"datastax:spark-cassandra-connector:2.4.0-s_2.11"`
+=> `"spark.cassandra.connection.host"` avec la valeur suivante `"172.31.81.86, 172.31.83.94, 172.31.91.18"`, ie les adresses privées des noeuds EC2.
 
 Ne pas oublier de les rajouter sur le notebook, d'enregistrer, et d'écrire $nom_interpréteur dans la cellule ou l'interpréteur est appelé
 Il faut ajouter les imports suivants dans chaque notebook, afin de pouvoir lancer des requêtes vers le cluster Cassandra:
