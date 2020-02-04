@@ -113,9 +113,12 @@ Création des tables:
 - #### Table pour requête 2:
 `CREATE TABLE request2 (year int, month int, day int, actioncountry  text, eventid int, nummentions int, PRIMARY KEY ((actioncountry, year, month, day), nummentions)) WITH CLUSTERING ORDER BY (nummentions DESC);`
 - #### Tables pour requête 3:
-=> Table 1:`CREATE TABLE request31 (sourcecommonname text,year int,month int,day int,theme text,numarticles int,avgtone float, PRIMARY KEY (sourcecommonname,theme,year,month,day));`  
+=> Table 1:`CREATE TABLE request31 (sourcecommonname text,year int,month int,day int,theme text,numarticles int,avgtone float, PRIMARY KEY (sourcecommonname,theme,year,month,day));` 
+
 => Table 2:`CREATE TABLE request32 (sourcecommonname text,year int,month int,day int,person text,numarticles int,avgtone float, PRIMARY KEY  (sourcecommonname,year,month,day,person));`  
+
 => Table 3:`CREATE TABLE request33 (sourcecommonname text,year int,month int,day int,location text,numarticles int,avgtone float, PRIMARY KEY  (sourcecommonname,year,month,day,location));`
+
 - #### Table pour requête 4:
 `CREATE TABLE request4 (actor1countrycode text,actor2countrycode text,year int,month int,day int,avgtone int,numarticles int, PRIMARY KEY ((actor1countrycode,actor2countrycode),year,month,day);`
 
