@@ -1,4 +1,4 @@
-# Quelques erreurs rencontrées et résolution
+# Quelques erreurs rencontrées et leur résolution
 
 Il est à noter que pour ce projet, nous utilisons un compte Amazon Educate.Il se peut donc qu'il y ait des erreurs très spécifiques à cette version.
 
