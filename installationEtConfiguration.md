@@ -105,15 +105,18 @@ Avec les paramètres suivants:
 - Saisir le bloc CIDR du subnet du cluster EMR, au niveau des adresses entrantes de chaque noeud EC2 du cluster AWS, de type "Tous les TCP"
 
 ### Création du keysapce Cassandra et des tables:
-Création du keyspace: `CREATE KEYSPACE gdelt_project WITH REPLICATION = {'class':'SimpleStrategy', 'replication_factor' : 3};`
+- #### Création du keyspace: `CREATE KEYSPACE gdelt_project WITH REPLICATION = {'class':'SimpleStrategy', 'replication_factor' : 3};`
 Création des tables:
-- Table pour requête 1: `CREATE TABLE request1 (year int, month int, day int, actionCountry text, language text, eventid int, numarticles int, PRIMARY KEY ( (year, month, day, actionCountry,language) , eventid ));`
-- Table pour requête 2:`CREATE TABLE request2 (year int, month int, day int, actioncountry  text, eventid int, nummentions int, PRIMARY KEY ((actioncountry, year, month, day), nummentions)) WITH CLUSTERING ORDER BY (nummentions DESC);`
-- Tables pour requête 3:
+- #### Table pour requête 1: 
+`CREATE TABLE request1 (year int, month int, day int, actionCountry text, language text, eventid int, numarticles int, PRIMARY KEY ( (year, month, day, actionCountry,language) , eventid ));`
+- #### Table pour requête 2:
+`CREATE TABLE request2 (year int, month int, day int, actioncountry  text, eventid int, nummentions int, PRIMARY KEY ((actioncountry, year, month, day), nummentions)) WITH CLUSTERING ORDER BY (nummentions DESC);`
+- #### Tables pour requête 3:
 => Table 1:`CREATE TABLE request31 (sourcecommonname text,year int,month int,day int,theme text,numarticles int,avgtone float, PRIMARY KEY (sourcecommonname,theme,year,month,day));`
 => Table 2:`CREATE TABLE request32 (sourcecommonname text,year int,month int,day int,person text,numarticles int,avgtone float, PRIMARY KEY  (sourcecommonname,year,month,day,person));`
 => Table 3:`CREATE TABLE request33 (sourcecommonname text,year int,month int,day int,location text,numarticles int,avgtone float, PRIMARY KEY  (sourcecommonname,year,month,day,location));`
-- Table pour requête 4:`CREATE TABLE request4 (actor1countrycode text,actor2countrycode text,year int,month int,day int,avgtone int,numarticles int, PRIMARY KEY ((actor1countrycode,actor2countrycode),year,month,day);`
+- #### Table pour requête 4:
+`CREATE TABLE request4 (actor1countrycode text,actor2countrycode text,year int,month int,day int,avgtone int,numarticles int, PRIMARY KEY ((actor1countrycode,actor2countrycode),year,month,day);`
 
 ### Installation d'Ansible (amélioration de notre rendu)
 
