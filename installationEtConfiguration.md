@@ -152,5 +152,3 @@ Il faut ajouter les imports suivants dans chaque notebook, afin de pouvoir lance
 import org.apache.spark.sql.cassandra._
 import com.datastax.spark.connector._
 ```
-
-https://github.com/datastax/spark-cassandra-connector/blob/master/doc/14_data_frames.md
