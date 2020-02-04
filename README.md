@@ -19,7 +19,7 @@ Afficher :
 
 ### Objectifs:
 - Concevoir un système permettant d’analyser l’évolution des relations entre les différents pays
-- Proposer un système de stockage distribué, résilient et performant sur AWS pour les données de GDELT et faire persister les données même si un noeud venait à tomber. 
+- Proposer un système de stockage distribué, résilient et performant sur AWS pour les données de GDELT et faire persister les données même si un noeud venait à tomber.
 
 ### Contraintes
 - Utiliser au moins 1 technologie du  cours (SQL / Cassandra / Spark)
@@ -31,7 +31,17 @@ Afficher :
 - Machine locale -- Comprendre les données / requêtes
 - AWS (Amazon Educate) -- Configuration de l’infrastructure / Mise en production
 - Cassandra: Stockage de  gros volumes de données possible /passage à l’échelle/ Robustesse / résilience, RF à 3
-- Spark: Moteur de traitement de données très performant (nécessite bcp de mémoire) / flexibilité dans la manipulation des données avec des dataframes
+- Spark: Moteur de traitement de données très performant (nécessite bcp de mémoire) / flexibilité dans la manipulation des données avec des dataframes.
+
+### Volumes chargés:
+Comme mentionné, nous avons pu résoudre notre problème de compilation sur Zeppelin, en évitant d'installer Cassandra dans le noeud Master EMR, qui contient
+Nous avons pu charger les volumes suivants:
+- Requête 1: 1 mois
+- Requête 2: 1 mois
+- Requête 31: 1 mois
+- Requête 32: 1 mois
+- Requête 33: 1 jour
+- Requête 4: 1 mois
 
 ### Suite à la présentation:
 Lors de la présentation et la démonstration, nous avons pu montrer la résilience et la persistance de nos données.
