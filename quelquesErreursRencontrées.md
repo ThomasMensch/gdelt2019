@@ -50,7 +50,7 @@ Bien vérifier les propriétés IP (seeds/listen_address/rpc_address) du fichier
 
 ## Erreur rencontrée lors de l'exécution des requêtes dans notebook Zeppelin: `Broken pipe`, puis `Java Connection refused`:
 
-Cette erreur intervient de façon aléatoire, mais très récurrente, lors de l'exécution de code dans le notebook Zeppelin. Celle-ci est du au manque de mémoire dans l'instance EC2 d'AWS, et au fait que nous avions installé Cassandra dans le noeud Master du cluster EMR d'AWS. De ce fait, Zeppelin tombait en erreur, car la mémoire était utilisée par Cassandra aussi, qui était installé sur le même noeud que Zeppelin et Spark.
+Cette erreur intervient de façon aléatoire, mais très récurrente, lors de l'exécution de code dans le notebook Zeppelin. Celle-ci est due au manque de mémoire dans l'instance EC2 d'AWS, et au fait que nous avions installé Cassandra dans le noeud Master du cluster EMR d'AWS. De ce fait, Zeppelin tombait en erreur, car la mémoire était utilisée par Cassandra aussi, qui était installé sur le même noeud que Zeppelin et Spark.
 
 Résolution:
 Nous avons désinstallé Cassandra du noeud Master du cluster, et avons pu charger 1 mois de données pour toutes nos requêtes. Le noeud Master est le noeud utilisé par le cluster EMR, pour lancer Zeppelin et Spark, donc ne doit pas contenir de serveur Cassandra.
