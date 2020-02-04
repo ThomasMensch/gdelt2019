@@ -36,12 +36,12 @@ Afficher :
 ### Volumes chargés:
 Comme mentionné, nous avons pu résoudre notre problème de compilation sur Zeppelin, en évitant d'installer Cassandra dans le noeud Master EMR, qui contient
 Nous avons pu charger les volumes suivants:
-- Requête 1: 1 mois
-- Requête 2: 1 mois
-- Requête 31: 1 mois
-- Requête 32: 1 mois
-- Requête 33: 1 jour
-- Requête 4: 1 mois
+- Requête 1: 1 mois (ie request_1_1mois.csv)
+- Requête 2: 1 mois (ie request_2_1mois.csv)
+- Requête 31: 1 mois (ie request_31_1mois.csv)
+- Requête 32: 1 mois (ie request_32_1mois.csv)
+- Requête 33: 1 jour (ie request_33_1jour.csv)
+- Requête 4: 1 mois (ie request_4_1mois.csv)
 
 ### Suite à la présentation:
 Lors de la présentation et la démonstration, nous avons pu montrer la résilience et la persistance de nos données.
