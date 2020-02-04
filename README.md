@@ -46,12 +46,12 @@ Nous avons pu charger les volumes suivants:
 ### Suite à la présentation:
 Lors de la présentation et la démonstration, nous avons pu montrer la résilience et la persistance de nos données.
 Nous avions choisi d'utiliser EC2 couplé à EMR et d'installer Cassandra sur tous les noeuds (3 noeuds) pour pouvoir répliquer l'information autant que nécessaire. Nous avions choisi de faire interagir Zeppelin sur AWS avec Cassandra en installant des interpréteurs / connecteur spark cassandra.
-Nous avons rencontré le problème suivant majoritairement qui est celui que nos noeuds master finissaient par tomber au bout d'un certain temps et que les slaves persistaient mais qu'on perdait donc notre cluster en entier.
+Nous avons rencontré le problème suivant majoritairement qui est celui que nos noeuds masters finissaient par tomber au bout d'un certain temps et que les slaves persistaient mais qu'on perdait donc notre cluster en entier.
 
 ### Post-projet:
-A la suite de la présentation, nous avons poursuivit ce projet, en essayant de résoudre et surtout comprendre l'origine des problèmes auxquels nous avions fait face pendant la démonstration. En voici ce que nous retenons maintenant: 
-#### Le lancement d'EMR, avec 3 instances, avec un compte éducate, restreint notablement les ressources matérielles. Lorsque nous avions lancé le cluster, EMR génère un maître et plusieurs Slave. EMR lance Spark et Zeppelin sur le noeud maître, ce qui consomme notablement la mémoire java. Ce souci impose de ne pas installer Cassandra dans le noeud maître sous peine de:
-- Crash Zeppelin en plein requête Spark ou Cassandra => Broken pipe, puis Connection refused.
+A la suite de la présentation, nous avons poursuivi ce projet, en essayant de résoudre et surtout comprendre l'origine des problèmes auxquels nous avions fait face pendant la démonstration. En voici ce que nous retenons maintenant: 
+#### Le lancement d'EMR, avec 3 instances, avec un compte éducate, restreint notablement les ressources matérielles. Lorsque nous avions lancé le cluster, EMR génère un maître et plusieurs Slaves. EMR lance Spark et Zeppelin sur le noeud maître, ce qui consomme notablement la mémoire java. Ce souci impose de ne pas installer Cassandra dans le noeud maître sous peine de:
+- Crash Zeppelin en pleine requête Spark ou Cassandra => Broken pipe, puis Connection refused.
 - Crash serveur Cassandra au niveau du noeud, avec l'erreur "not enough java memory heap", la mémoire étant consommée principalement par Zeppelin et Spark lancés sur le noeud maître.
 
 
