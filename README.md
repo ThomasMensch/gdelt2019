@@ -43,6 +43,8 @@ Nous avons pu charger les volumes suivants:
 - Requête 33: 1 jour (ie request_33_1jour.csv)
 - Requête 4: 1 mois (ie request_4_1mois.csv)
 
+=> Ces CSV ne remontent pas les données d'un mois totalement, car l'exécution de la requête d'extraction mettait en risque la consommation de la mémoire. Donc on s'est limité à l'extraction de 1000 lignes, ie la limite par default de Spark. Chaque CSV contient des données sur tout le mois 12. 
+
 ### Suite à la présentation:
 Lors de la présentation et la démonstration, nous avons pu montrer la résilience et la persistance de nos données.
 Nous avions choisi d'utiliser EC2 couplé à EMR et d'installer Cassandra sur tous les noeuds (3 noeuds) pour pouvoir répliquer l'information autant que nécessaire. Nous avions choisi de faire interagir Zeppelin sur AWS avec Cassandra en installant des interpréteurs / connecteur spark cassandra.
