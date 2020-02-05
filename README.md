@@ -48,6 +48,11 @@ Lors de la présentation et la démonstration, nous avons pu montrer la résilie
 Nous avions choisi d'utiliser EC2 couplé à EMR et d'installer Cassandra sur tous les noeuds (3 noeuds) pour pouvoir répliquer l'information autant que nécessaire. Nous avions choisi de faire interagir Zeppelin sur AWS avec Cassandra en installant des interpréteurs / connecteur spark cassandra.
 Nous avons rencontré le problème suivant majoritairement qui est celui que nos noeuds masters finissaient par tomber au bout d'un certain temps et que les slaves persistaient mais qu'on perdait donc notre cluster en entier.
 
+
+### Budget consommé:
+Nous avons consommé 100$, puis avons réactivé notre compte educate afin d'investiguer encore l'origine des erreurs que nous avons rencontré. Il en ressort la résolution de la majorité de nos erreurs, et le chargement d'un mois sur toutes les requêtes, sauf la 3-1 de la requête 3.
+Nous avons consommé 120$ en tout.
+
 ### Post-projet:
 A la suite de la présentation, nous avons poursuivi ce projet, en essayant de résoudre et surtout comprendre l'origine des problèmes auxquels nous avions fait face pendant la démonstration. En voici ce que nous retenons maintenant: 
 #### Le lancement d'EMR, avec 3 instances, avec un compte éducate, restreint notablement les ressources matérielles. Lorsque nous avions lancé le cluster, EMR génère un maître et plusieurs Slaves. EMR lance Spark et Zeppelin sur le noeud maître, ce qui consomme notablement la mémoire java. Ce souci impose de ne pas installer Cassandra dans le noeud maître sous peine de:
