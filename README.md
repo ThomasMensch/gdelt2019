@@ -52,7 +52,7 @@ Nous avons rencontré le problème suivant majoritairement qui est celui que nos
 
 
 ### Budget consommé:
-Nous avons consommé 100$, puis avons réactivé notre compte educate afin d'investiguer encore l'origine des erreurs que nous avons rencontré. Il en ressort la résolution de la majorité de nos erreurs, et le chargement d'un mois sur toutes les requêtes, sauf la 3-1 de la requête 3.
+Nous avons consommé 100$, puis avons réactivé notre compte educate afin d'investiguer encore l'origine des erreurs que nous avons rencontrées. Il en ressort la résolution de la majorité de nos erreurs, et le chargement d'un mois sur toutes les requêtes, sauf la 3-1 de la requête 3.
 Nous avons consommé 120$ en tout.
 
 ### Post-projet:
